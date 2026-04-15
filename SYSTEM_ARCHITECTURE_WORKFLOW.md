@@ -649,3 +649,18 @@ workspace/run-20260415-1042/
 - bundle manifest의 commit hash 4종(source/know/gout/review) 기록 여부
 - human approval 없이 publish stage 진입 차단 여부
 - trace metadata 누락 없는지 검증
+
+---
+
+## 16. Phase 1 산출물 (2026-04-15)
+
+Phase 1(Foundation & Governance) 확정 산출물:
+
+- 운영 규칙서: `governance/phase1/phase1-operating-rules.md`
+- 리뷰/승인 책임 매트릭스(RACI): `governance/phase1/phase1-review-approval-raci.md`
+
+본 산출물은 다음 항목을 확정한다.
+
+1. `svc/know/gout/revw` 네이밍 및 매핑 규칙
+2. `human_approval` 게이트 정책과 publish 차단 조건
+3. 문서 taxonomy (`architecture/style_guide/reference/build_runtime/troubleshooting/review_checklist`)
