@@ -552,6 +552,24 @@ pipeline {
 3. 수동 sync 비율 축소(자동 선택 규칙 고도화)
 4. 다중 서비스 dependency 연쇄 분석으로 확대
 
+### 13.4 MVP 즉시 적용 운영 규칙 (리뷰 반영)
+
+MVP 단계에서는 고도화 이전에 아래 3가지를 최소 운영 규칙으로 고정한다.
+
+1. **입력 완전성 최소 검증 (MVP Validator)**
+   - `bundle_manifest.yaml`, `changed_files.txt`, `graphyfi/impact-*.json`, `knowledge/*.md` 존재 여부를 실행 전 검사
+   - 누락 시 파이프라인을 즉시 중단하고 `status=blocked_manual_sync`로 전환
+
+2. **수동 동기화 출처 기록 의무화**
+   - `staging/manual/`에 추가된 모든 파일은 `bundle_manifest.yaml`에 `manual_source`, `added_by`, `added_at` 필드로 기록
+   - 출처 미기록 파일은 실행 입력에서 제외
+
+3. **실패 처리 단순화**
+   - `opencode run command` 실패 시 동일 manifest로 1회만 재시도
+   - 재실패 시 자동 반영을 중단하고 reviewer 수동 검토 큐로 이관
+
+위 3가지 규칙은 본 문서의 `7.2 복사/붙여넣기/동기화`, `8.2 architecture update command 입력`, `10.4 실패/재실행/보류 전략`을 MVP 운영 기준으로 구체화한 것이다.
+
 ---
 
 ## 14. Risks and Mitigations
@@ -631,4 +649,3 @@ workspace/run-20260415-1042/
 - bundle manifest의 commit hash 4종(source/know/gout/review) 기록 여부
 - human approval 없이 publish stage 진입 차단 여부
 - trace metadata 누락 없는지 검증
-
