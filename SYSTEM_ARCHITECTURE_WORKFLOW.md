@@ -258,8 +258,19 @@ last_reviewed_at: 2026-04-10T09:30:00Z
 8. 아키텍처 업데이트 초안 생성
 9. 리뷰 산출물 생성 (diff, 근거, 체크리스트)
 10. 사람 검토/승인
+
 11. 승인 후 knowledge repo/target repo 반영
 12. graphyfi output 및 trace metadata 갱신
+
+#### Phase 3 실행 문서 위치 (MVP 운영)
+
+Phase 3(파이프라인/스테이징 조립)의 실행 상세는 아래 문서를 기준으로 운영한다.
+
+- `phase3/PHASE3_EXECUTION_PLAN.md`
+- `phase3/ci-stage-definition.md`
+- `phase3/staging-spec.md`
+- `phase3/templates/bundle_manifest.example.yaml`
+- `phase3/templates/blocked_manual_sync.example.yaml`
 
 ### 7.2 복사/붙여넣기/동기화(핵심)
 
