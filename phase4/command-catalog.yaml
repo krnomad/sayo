@@ -1,0 +1,76 @@
+version: 1
+phase: 4
+name: ai-command-execution-and-review-artifacts
+
+execution_order:
+  - impact-analysis
+  - architecture-update
+  - review-artifact
+
+commands:
+  impact-analysis:
+    command: opencode run impact-analysis --manifest staging/bundle_manifest.yaml
+    intent: 변경 파일 + graphyfi 영향 범위를 기반으로 영향도 보고서 생성
+    required_inputs:
+      - staging/bundle_manifest.yaml
+      - staging/input/changed_files.txt
+      - staging/input/graphyfi/impact-*.json
+      - staging/input/knowledge/*.md
+    outputs:
+      - staging/output/impact_report.md
+      - staging/output/impact.json
+    trace:
+      command_version: impact-analysis@v1
+      record_fields:
+        - trace_record_id
+        - source_commit_hash
+        - knowledge_commit_hash
+        - graphyfi_commit_hash
+        - review_commit_hash
+
+  architecture-update:
+    command: opencode run architecture-update --manifest staging/bundle_manifest.yaml
+    intent: 영향도 결과를 바탕으로 아키텍처 문서 변경안 생성
+    required_inputs:
+      - staging/bundle_manifest.yaml
+      - staging/output/impact_report.md
+      - staging/input/knowledge/*.md
+      - staging/input/graphyfi/*.json
+    outputs:
+      - staging/output/architecture_patch.md
+      - staging/output/rationale.md
+    trace:
+      command_version: architecture-update@v1
+      record_fields:
+        - trace_record_id
+        - related_asset_ids
+        - related_graphyfi_paths
+
+  review-artifact:
+    command: opencode run review-artifact --input staging/output/
+    intent: 사람이 검토할 리뷰 패킷 생성
+    required_inputs:
+      - staging/output/architecture_patch.md
+      - staging/output/rationale.md
+      - staging/manifest/bundle_manifest.yaml
+      - staging/templates/review_checklist.md
+    outputs:
+      - revw/runs/{run_id}/proposed_changes.diff
+      - revw/runs/{run_id}/rationale.md
+      - revw/runs/{run_id}/review_checklist_filled.md
+    trace:
+      command_version: review-artifact@v1
+      record_fields:
+        - trace_record_id
+        - reviewer_queue
+        - review_status
+
+failure_policy:
+  retry_once_with_same_manifest: true
+  blocked_status: blocked_manual_sync
+  blocked_conditions:
+    - required_input_missing
+    - graphyfi_stale
+  escalation:
+    - assign_reviewer
+    - switch_to_manual_execution
