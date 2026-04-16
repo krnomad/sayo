@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sayo 워크스페이스 심플 분석</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --fg: #111827;
+      --muted: #6b7280;
+      --card: #f9fafb;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1220;
+        --fg: #e5e7eb;
+        --muted: #9ca3af;
+        --card: #111827;
+        --line: #374151;
+        --accent: #60a5fa;
+      }
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 20px 64px;
+    }
+    h1, h2 {
+      line-height: 1.25;
+      margin: 0 0 12px;
+    }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      margin: 18px 0 24px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .k { font-size: 0.85rem; color: var(--muted); }
+    .v { font-size: 1.35rem; font-weight: 700; margin-top: 4px; }
+    ul { margin: 6px 0 0; padding-left: 18px; }
+    li { margin: 6px 0; }
+    code {
+      background: color-mix(in oklab, var(--card) 75%, var(--line));
+      padding: 0.1rem 0.35rem;
+      border-radius: 6px;
+    }
+    .footer {
+      margin-top: 28px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin: 2px 6px 2px 0;
+      font-size: 0.86rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>sayo 워크스페이스 심플 분석</h1>
+    <p class="muted">AI KnowledgeOps + Graphyfi 중심 아키텍처 운영 모델을 문서/템플릿 기반으로 정리한 저장소입니다.</p>
+
+    <section class="grid" aria-label="요약 통계">
+      <article class="card"><div class="k">총 파일 수</div><div class="v">25</div></article>
+      <article class="card"><div class="k">Markdown 문서</div><div class="v">15</div></article>
+      <article class="card"><div class="k">YAML 메타/설정</div><div class="v">6</div></article>
+      <article class="card"><div class="k">JSON 그래프 샘플</div><div class="v">2</div></article>
+    </section>
+
+    <section class="card">
+      <h2>디렉터리 구조 (핵심)</h2>
+      <ul>
+        <li><code>governance/phase1</code>: 운영 규칙과 리뷰/승인 RACI</li>
+        <li><code>metadata</code>: <code>knowledge-index.yaml</code> 기반 자산 인덱스</li>
+        <li><code>templates</code>: Knowledge asset / index 템플릿</li>
+        <li><code>phase3</code>: CI stage, staging 규격, manifest 템플릿</li>
+        <li><code>phase4</code>: command 카탈로그, runbook, review artifact 템플릿</li>
+        <li><code>samples</code>: architecture 문서 및 graphyfi 결과 예시</li>
+      </ul>
+    </section>
+
+    <section class="card" style="margin-top:14px;">
+      <h2>현재 상태 한 줄 요약</h2>
+      <p>
+        이 워크스페이스는 <strong>실행 파이프라인의 명세화</strong>와 <strong>리뷰 아티팩트 표준화</strong>에 집중된
+        <strong>MVP 준비 단계</strong>이며, 실제 서비스 반영 자동화보다
+        <strong>추적성/승인 통제</strong>를 우선 설계한 형태입니다.
+      </p>
+    </section>
+
+    <section class="card" style="margin-top:14px;">
+      <h2>강점</h2>
+      <span class="tag">Execution-first</span>
+      <span class="tag">Human-gated</span>
+      <span class="tag">Traceability</span>
+      <span class="tag">Phase-based roadmap</span>
+      <ul>
+        <li>Phase 1~8 로드맵이 명확해 확장 순서가 분명함</li>
+        <li>CI/manifest/review 템플릿이 있어 재현 가능한 운영에 유리함</li>
+        <li>Graphyfi 산출물 연계를 명시해 영향도 분석 연결성이 좋음</li>
+      </ul>
+    </section>
+
+    <section class="card" style="margin-top:14px;">
+      <h2>다음 추천 액션 (간단)</h2>
+      <ol>
+        <li><code>metadata/knowledge-index.yaml</code>에 샘플 asset 2~3개 추가해 인덱스 실사용 검증</li>
+        <li><code>phase3/templates/bundle_manifest.example.yaml</code>을 실제 변경 이벤트 입력으로 dry-run</li>
+        <li><code>phase4/templates</code> 3종 산출물에 trace 필드(커밋/명령버전) 공통 블록 통일</li>
+      </ol>
+    </section>
+
+    <p class="footer">생성 기준: 워크스페이스 파일 구조 및 문서 목적 중심의 정적 분석 (2026-04-16 UTC)</p>
+  </main>
+</body>
+</html>
