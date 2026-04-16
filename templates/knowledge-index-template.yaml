@@ -1,0 +1,22 @@
+schema_version: 0.1.0
+generated_at: null
+repository:
+  source_repo: svc-<service-repo-name>
+  knowledge_repo: know-<service-repo-name>
+  graphyfi_repo: gout-<service-repo-name>
+  review_repo: revw-<service-repo-name>
+assets: []
+
+# asset 항목 예시
+# - asset_id: KA-payment-api-architecture-001
+#   path: architecture/service-context.md
+#   doc_type: architecture
+#   component_tags: [gateway, settlement]
+#   domain_tags: [payment]
+#   related_docs: [KA-payment-api-build_runtime-002]
+#   related_graphyfi_paths:
+#     - graphs/dependency-map.json
+#     - graphs/impact/impact-<commit>.json
+#   review_status: approved
+#   source_of_truth: know-payment-api
+#   last_reviewed_at: 2026-04-15T00:00:00Z

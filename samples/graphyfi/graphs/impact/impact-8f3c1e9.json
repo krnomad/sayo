@@ -1,0 +1,7 @@
+{
+  "impact_id": "impact-8f3c1e9",
+  "source_commit_hash": "8f3c1e9",
+  "changed_components": ["settlement"],
+  "impacted_components": ["api-gateway", "auth"],
+  "generated_at": "2026-04-15T00:00:00Z"
+}
