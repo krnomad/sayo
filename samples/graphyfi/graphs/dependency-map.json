@@ -1,0 +1,13 @@
+{
+  "graph_id": "dependency-map-sample-20260415",
+  "nodes": [
+    {"id": "api-gateway", "type": "component"},
+    {"id": "auth", "type": "component"},
+    {"id": "settlement", "type": "component"}
+  ],
+  "edges": [
+    {"from": "api-gateway", "to": "auth", "relation": "calls"},
+    {"from": "api-gateway", "to": "settlement", "relation": "calls"},
+    {"from": "settlement", "to": "auth", "relation": "validates"}
+  ]
+}

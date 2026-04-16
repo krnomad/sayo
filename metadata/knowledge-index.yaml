@@ -1,0 +1,31 @@
+schema_version: 0.1.0
+generated_at: 2026-04-15T00:00:00Z
+repository:
+  source_repo: svc-payment-api
+  knowledge_repo: know-payment-api
+  graphyfi_repo: gout-payment-api
+  review_repo: revw-payment-api
+assets:
+  - asset_id: KA-payment-api-architecture-001
+    path: samples/architecture/service-context.md
+    doc_type: architecture
+    component_tags: [api-gateway, settlement]
+    domain_tags: [payment, compliance]
+    related_docs: [KA-payment-api-build_runtime-002]
+    related_graphyfi_paths:
+      - samples/graphyfi/graphs/dependency-map.json
+      - samples/graphyfi/graphs/impact/impact-8f3c1e9.json
+    review_status: approved
+    source_of_truth: know-payment-api
+    last_reviewed_at: 2026-04-15T00:00:00Z
+  - asset_id: KA-payment-api-build_runtime-002
+    path: samples/architecture/runtime-deployment.md
+    doc_type: build_runtime
+    component_tags: [deployment, runtime]
+    domain_tags: [payment]
+    related_docs: [KA-payment-api-architecture-001]
+    related_graphyfi_paths:
+      - samples/graphyfi/graphs/dependency-map.json
+    review_status: draft
+    source_of_truth: know-payment-api
+    last_reviewed_at: null
