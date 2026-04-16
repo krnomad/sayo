@@ -1,0 +1,44 @@
+manifest_version: 1
+run_id: run-20260415-0001
+trace_record_id: TR-svc-payment-api-20260415-0001
+
+repositories:
+  source_repo: svc-payment-api
+  knowledge_repo: know-payment-api
+  graphyfi_repo: gout-payment-api
+  review_repo: revw-payment-api
+
+commits:
+  source_commit_hash: "<source-commit>"
+  knowledge_commit_hash: "<knowledge-commit>"
+  graphyfi_commit_hash: "<graphyfi-commit>"
+  review_commit_hash: "<review-commit>"
+
+inputs:
+  changed_files: staging/input/changed_files.txt
+  knowledge_paths:
+    - staging/input/knowledge/architecture/service-context.md
+  graphyfi_paths:
+    - staging/input/graphyfi/dependency-map-20260415.json
+    - staging/input/graphyfi/impact/impact-<commit>.json
+
+manual_sync:
+  enabled: false
+  manual_sources: []
+
+commands:
+  - id: impact-analysis
+    spec_ref: phase4/command-catalog.yaml#commands.impact-analysis
+  - id: architecture-update
+    spec_ref: phase4/command-catalog.yaml#commands.architecture-update
+  - id: review-artifact
+    spec_ref: phase4/command-catalog.yaml#commands.review-artifact
+
+outputs:
+  review_artifacts_dir: revw/runs/{run_id}
+  required_files:
+    - proposed_changes.diff
+    - rationale.md
+    - review_checklist_filled.md
+
+status: pending

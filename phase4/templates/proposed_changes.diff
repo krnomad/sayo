@@ -1,0 +1,15 @@
+# proposed_changes.diff (template)
+
+diff --git a/architecture/service-context.md b/architecture/service-context.md
+index 0000000..1111111 100644
+--- a/architecture/service-context.md
++++ b/architecture/service-context.md
+@@ -1,5 +1,12 @@
+-기존 설명
++변경 설명
++
++# Why
++- changed_files: [src/settlement/engine.ts]
++- related_graphyfi_paths: [graphs/impact/impact-<commit>.json]
++- impact_scope: [settlement, gateway]
++
